@@ -1,0 +1,237 @@
+<!-- ======= Breadcrumbs ======= -->
+@if(course){
+
+<div class="breadcrumbs" data-aos="fade-in">
+  <div class="container">
+    <h2>Course Details</h2>
+    <p>
+      {{ course.headerDescription }}
+    </p>
+  </div>
+</div>
+<!-- End Breadcrumbs -->
+
+<!-- ======= Course Details Section ======= -->
+<section id="course-details" class="course-details">
+  <div class="container" data-aos="fade-up">
+    <div class="row">
+      <div class="col-lg-8">
+        <img
+          [ngSrc]="course.image"
+          width="1176"
+          height="1056"
+          class="img-fluid"
+          priority=""
+          [alt]="course.name"
+        />
+        <h3>{{ course.name }}</h3>
+        <p>
+          {{ course.description }}
+        </p>
+      </div>
+      <div class="col-lg-4">
+        <div
+          class="course-info d-flex justify-content-between align-items-center"
+        >
+          <h5>Course Owner</h5>
+          <p>
+            <a [routerLink]="['/course/', course.user.userName]">{{
+              course.user.userName! | truncate : 50
+            }}</a>
+          </p>
+        </div>
+
+        <div
+          class="course-info d-flex justify-content-between align-items-center"
+        >
+          <h5>Course Fee</h5>
+          <p>${{ course.price }}</p>
+        </div>
+
+        <div
+          class="course-info d-flex justify-content-between align-items-center"
+        >
+          <h5>Available Seats</h5>
+          <p>30</p>
+        </div>
+
+        <div
+          class="course-info d-flex justify-content-between align-items-center"
+        >
+          <h5>Schedule</h5>
+          <p>5.00 pm - 7.00 pm</p>
+        </div>
+
+        <div class="w-full my-5">
+          @if(IsCourseLoading$ | async){
+          <button class="!w-full btn btn-success">
+            <span class="spinner-border spinner-border-sm"></span>
+            Loading...
+          </button>
+          }@else{
+          <button
+            (click)="checkout()"
+            class="!w-full btn btn-success btn-large !font-bold !text-base"
+          >
+            Checkout
+          </button>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Cource Details Section -->
+
+<!-- ======= Cource Details Tabs Section ======= -->
+<section id="cource-details-tabs" class="cource-details-tabs">
+  <div class="container" data-aos="fade-up">
+    <div class="row">
+      <div class="col-lg-3">
+        <ul class="nav nav-tabs flex-column">
+          <li class="nav-item">
+            <a
+              class="nav-link active show"
+              data-bs-toggle="tab"
+              href="#tab-1"
+              >{{ course.topic.title }}</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#tab-2">
+              {{ course.topic.title }}
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#tab-3">
+              {{ course.topic.title }}
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#tab-4">
+              {{ course.topic.title }}
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#tab-5">
+              {{ course.topic.title }}
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-lg-9 mt-4 mt-lg-0">
+        <div class="tab-content">
+          <div class="tab-pane active show" id="tab-1">
+            <div class="row">
+              <div class="col-lg-8 details order-2 order-lg-1">
+                <h3>{{ course.topic.title }}</h3>
+                <p class="fst-italic">
+                  {{ course.topic.description }}
+                </p>
+                <p>
+                  {{ course.topic.description }}
+                </p>
+              </div>
+              <div class="col-lg-4 text-center order-1 order-lg-2">
+                <img
+                  [src]="course.subImage"
+                  [alt]="course.name"
+                  class="img-fluid"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="tab-2">
+            <div class="row">
+              <div class="col-lg-8 details order-2 order-lg-1">
+                <h3>{{ course.topic.title }}</h3>
+                <p class="fst-italic">
+                  {{ course.topic.description }}
+                </p>
+                <p>
+                  {{ course.topic.description }}
+                </p>
+              </div>
+              <div class="col-lg-4 text-center order-1 order-lg-2">
+                <img
+                  [src]="course.subImage"
+                  [alt]="course.name"
+                  class="img-fluid"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="tab-3">
+            <div class="row">
+              <div class="col-lg-8 details order-2 order-lg-1">
+                <h3>{{ course.topic.title }}</h3>
+                <p class="fst-italic">
+                  {{ course.topic.description }}
+                </p>
+                <p>
+                  {{ course.topic.description }}
+                </p>
+              </div>
+              <div class="col-lg-4 text-center order-1 order-lg-2">
+                <img
+                  [src]="course.subImage"
+                  [alt]="course.name"
+                  class="img-fluid"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="tab-4">
+            <div class="row">
+              <div class="col-lg-8 details order-2 order-lg-1">
+                <h3>
+                  {{ course.topic.title }}
+                </h3>
+                <p class="fst-italic">
+                  {{ course.topic.description }}
+                </p>
+                <p>
+                  {{ course.topic.description }}
+                </p>
+              </div>
+              <div class="col-lg-4 text-center order-1 order-lg-2">
+                <img
+                  [src]="course.subImage"
+                  [alt]="course.name"
+                  class="img-fluid"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="tab-5">
+            <div class="row">
+              <div class="col-lg-8 details order-2 order-lg-1">
+                <h3>{{ course.topic.title }}</h3>
+                <p class="fst-italic">
+                  {{ course.topic.description }}
+                </p>
+
+                <p>
+                  {{ course.topic.description }}
+                </p>
+              </div>
+              <div class="col-lg-4 text-center order-1 order-lg-2">
+                <!-- <img
+                  [src]="course.subImage"
+                  [alt]="course.name"
+                  class="img-fluid"
+                /> -->
+                <learnal-youtube-player videoId="qj_AZ_FkPtQ" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+}@else{
+<learnal-empty [isNotEnrolled]="false" />
+}
+
+<!-- End Cource Details Tabs Section -->

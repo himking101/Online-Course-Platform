@@ -1,0 +1,138 @@
+<router-outlet />
+
+<div
+  class="bg-accent-dark top-0 left-0 bg-gradient-to-b to-accent bottom-0 leading-5 h-full w-full overflow-hidden"
+>
+  <div
+    class="relative min-h-screen sm:flex sm:flex-row justify-center bg-transparent rounded-3xl shadow-xl"
+  >
+    <div class="flex justify-center self-center z-10">
+      <div
+        class="p-12 bg-white mx-auto rounded-3xl w-96 border-b-2 border-accent"
+      >
+        <div class="mb-7">
+          <h3 class="font-semibold text-2xl text-gray-800">Sign In</h3>
+          <p class="text-gray-400">
+            Don't have an account?
+            <a
+              routerLink="/auth/signup"
+              class="text-sm text-accent hover:text-accent-dark"
+              >Sign Up</a
+            >
+          </p>
+        </div>
+        <form [formGroup]="loginForm" (ngSubmit)="Login()" class="space-y-6">
+          <div class="">
+            <input
+              class="w-full text-sm px-4 py-3 bg-gray-200 focus:bg-gray-100 border border-gray-200 rounded-lg focus:outline-none focus:border-accent-light"
+              type="email"
+              placeholder="example@gmail.com"
+              formControlName="email"
+            />
+            @if(controlHasError('email', 'required')){
+            <mat-error> Email is required. </mat-error>
+            } @if(controlHasError('email', 'email')){
+            <mat-error> Please enter a valid email. </mat-error>
+            }
+          </div>
+
+          <div class="">
+            <div
+              class="w-full h-auto flex items-center relative bg-gray-200 rounded-lg"
+            >
+              <input
+                class="text-sm text-gray-600 px-4 py-3 rounded-lg w-full bg-gray-200 focus:bg-gray-100 border border-gray-200 focus:outline-none focus:border-accent"
+                placeholder="Password"
+                [type]="hidePassword ? 'password' : 'text'"
+                formControlName="password"
+              />
+
+              <button
+                class="absolute left-0"
+                type="button"
+                mat-icon-button
+                (click)="hidePassword = !hidePassword"
+                [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hidePassword"
+              >
+                <ng-icon
+                  color="gray"
+                  [name]="hidePassword ? 'faEyeSlash' : 'faEye'"
+                  size="1.5rem"
+                />
+              </button>
+            </div>
+            @if(controlHasError('password', 'required')){
+            <mat-error> Password is required. </mat-error>
+            } @if(controlHasError('password', 'minlength')){
+            <mat-error> Password should be at least 8 characters. </mat-error>
+            }
+          </div>
+
+          <div class="flex items-center justify-between">
+            <div class="text-sm ml-auto">
+              <a
+                routerLink="forgot-password"
+                class="text-accent-dark hover:text-accent-light"
+              >
+                Forgot your password?
+              </a>
+            </div>
+          </div>
+          @if(errorMessage$ | async){
+          <h6
+            class="p-2 font-bold text-sm rounded-sm text-red-300 m-auto text-center"
+          >
+            {{ errorMessage$ | async }}
+          </h6>
+          }
+          <div>
+            <button
+              type="submit"
+              [disabled]="!loginForm.valid"
+              class="w-full flex justify-center bg-accent-dark hover:bg-accent text-gray-100 p-3 rounded-lg tracking-wide font-semibold cursor-pointer transition ease-in duration-500"
+            >
+              {{ (IsLoading$ | async) ? "Login In..." : "Sign In" }}
+            </button>
+          </div>
+          <div class="flex items-center justify-center space-x-2 my-5">
+            <span class="h-px w-16 bg-gray-100"></span>
+            <span class="text-gray-600 font-normal">or</span>
+            <span class="h-px w-16 bg-gray-100"></span>
+          </div>
+          <div class="flex justify-center gap-5 w-full">
+            <button
+              type="submit"
+              class="w-full flex items-center justify-center mb-6 md:mb-0 border border-gray-300 hover:border-gray-900 hover:bg-gray-900 text-sm text-gray-500 p-3 rounded-lg tracking-wide font-medium cursor-pointer transition ease-in duration-100"
+            >
+              <img
+                class="w-4 mr-2"
+                src="../../../../assets/svg/auth/google.svg"
+                alt="..."
+              />
+              <span>Google</span>
+            </button>
+
+            <button
+              type="submit"
+              class="w-full flex items-center justify-center mb-6 md:mb-0 border border-gray-300 hover:border-gray-900 hover:bg-gray-900 text-sm text-gray-500 p-3 rounded-lg tracking-wide font-medium cursor-pointer transition ease-in duration-100 px-"
+            >
+              <img
+                class="w-4 mr-2"
+                src="../../../../assets/svg/auth/fb.svg"
+                alt="..."
+              />
+              <span>Facebook</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <img
+      class="absolute bottom-0 left-0"
+      src="../../../../assets/svg/auth/wavy.svg"
+      alt="..."
+    />
+  </div>
+</div>

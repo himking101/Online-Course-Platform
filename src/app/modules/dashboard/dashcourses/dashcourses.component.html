@@ -1,0 +1,42 @@
+<div
+  class="w-full h-auto flex flex-wrap items-center justify-center gap-y-4 gap-x-4"
+>
+  @for(course of courses$ | async; track course.id){
+
+  <div
+    class="flex flex-col items-center justify-center w-52 h-60 rounded-lg shadow-md"
+  >
+    <div
+      class="w-full h-[78%] flex flex-col items-center justify-center gap-y-[2%]"
+    >
+      <img
+        [src]="course.image"
+        loading="lazy"
+        alt="course Image"
+        class="h-[60%] w-full object-cover rounded-tr-lg rounded-tl-lg"
+      />
+      <div class="w-full h-[38%] flex items-center justify-center gap-2 p-3">
+        <div class="card-h !text-sm">
+          {{ course.description | truncate : 75 }}
+        </div>
+      </div>
+    </div>
+    <div
+      class="flex w-full h-[20%] items-center justify-around shadow cursor-pointer"
+    >
+      <img
+        title="{{ course.description }}"
+        class="bg-gray-400 hover:bg-gray-600 rounded-full p-2"
+        src="../../../assets/svg/course/exclamation-mark.svg"
+        alt="!"
+      />
+      <learnal-button (click)="showCourseDetail(course.id)" label="detail" />
+    </div>
+  </div>
+  }@empty {
+  <learnal-empty [isNotEnrolled]="true" />
+  } @if(courseId && showCourse){
+  <learnal-course [courseId]="courseId" [(show)]="showCourse" />
+
+  }
+</div>

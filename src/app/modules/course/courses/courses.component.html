@@ -1,0 +1,93 @@
+<!-- ======= Breadcrumbs ======= -->
+<div class="breadcrumbs">
+  <div class="container">
+    <h2>Courses</h2>
+    <p>
+      We have the right course for you! Take your time to search for the courses
+      you would like to enroll on, because we gat you.
+    </p>
+  </div>
+</div>
+<!-- End Breadcrumbs -->
+<!-- ======= Courses Section ======= -->
+@if(IsCourseLoading$ | async){
+<learnal-loader contentText="Loading Course..." />
+}@else {
+<section id="courses" class="courses">
+  <div class="container" data-aos="fade-up">
+    <div class="row" data-aos="zoom-in" data-aos-delay="100">
+      <!-- Your course list rendering code -->
+      @for(course of courses$ | async; track course.id){
+      <div
+        class="max-h-[40rem] col-lg-4 col-md-6 d-flex align-items-center justify-content-evenly flex-wrap gap-4 cursor-pointer"
+      >
+        <div class="course-item">
+          <img
+            [src]="course.image"
+            class="max-h-[20rem] w-full object-cover"
+            alt="..."
+          />
+          <div class="course-content">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h4>{{ course.category }}</h4>
+              <p class="price">${{ course.price }}</p>
+            </div>
+
+            <h3>
+              <a [routerLink]="['/course/detail', course.id]">
+                {{ course.name }}
+              </a>
+            </h3>
+            <p>
+              {{ course.description }}
+            </p>
+            <div
+              class="trainer d-flex justify-content-between align-items-center"
+            >
+              <div
+                class="trainer-profile d-flex align-items-center justify-content-evenly"
+              >
+                <img
+                  [src]="course.user.avatarUrl"
+                  class="img-fluid"
+                  alt="Course Owner"
+                />
+                <span>{{ course?.user?.userName! | truncate : 10 }}</span>
+                <learnal-button
+                  [link]="['/course/detail', course.id]"
+                  customClasses="ml-2 mx-auto text-sm"
+                  label="Buy Course"
+                />
+              </div>
+              <div class="trainer-rank d-flex align-items-center">
+                <i class="bx bx-user"></i>
+                &nbsp;60 &nbsp;&nbsp; @if((isLoading$ | async)) {
+                <span class="spinner-border spinner-border-sm"></span>
+                } @else {
+                <i
+                  (click)="likeCourse(course.user.userEmail, course.id)"
+                  class="bx bx-heart"
+                ></i
+                >&nbsp; {{ course.likes }} }
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      }@empty{
+      <learnal-course-not-found [isNotEnrolled]="false" />
+      }
+      <!-- End Course Item-->
+    </div>
+  </div>
+</section>
+}
+
+<mat-paginator
+  color="accent"
+  [length]="(courses$ | async)?.length"
+  [pageSizeOptions]="[10, 50, 100]"
+  aria-label="Select page"
+  (page)="pageChanged($event)"
+/>
+<!-- End Courses Section -->

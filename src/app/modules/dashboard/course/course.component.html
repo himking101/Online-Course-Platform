@@ -1,0 +1,100 @@
+<!-- ======= Breadcrumbs ======= -->
+<a
+  (click)="ngOnDestroy()"
+  class="fixed inset-0 w-screen z-50 h-screen opacity-10 bg-black"
+></a>
+<div
+  class="overflow-y-auto bg-white fixed inset-0 z-[99] m-auto flex items-center justify-center w-full md:w-[80vw] h-full md:h-[90vh] shadow-lg rounded-md"
+>
+  @if(course){
+  <!-- ======= Course Details Section ======= -->
+  <div class="w-full h-full pt-8 p-4 relative">
+    <ng-icon
+      title="Close"
+      class="absolute right-2 top-2 cursor-pointer"
+      name="faCircleXmark"
+      size="1.5rem"
+      color="#638763"
+      (click)="ngOnDestroy()"
+    />
+    <div class="w-full h-full mt-8 container" data-aos="fade-up">
+      <div class="row">
+        <div class="col-lg-8">
+          <img
+            [src]="course.image"
+            width="900"
+            height="900"
+            class="img-fluid"
+            priority=""
+            [alt]="course.name"
+          />
+          <h3>{{ course.name }}</h3>
+          <p>
+            {{ course.description }}
+          </p>
+        </div>
+        <div class="col-lg-4">
+          <div
+            class="course-info d-flex justify-content-between align-items-center"
+          >
+            <h5>Course Owner</h5>
+            <learnal-user-profile
+              [userId]="course.user.userId!"
+              [buttonLabel]="course.user.userName!"
+              className="text-accent text-base"
+            />
+          </div>
+
+          <div
+            class="course-info d-flex justify-content-between align-items-center"
+          >
+            <h5>Course Fee</h5>
+            <p>${{ course.price }}</p>
+          </div>
+
+          <div
+            class="course-info d-flex justify-content-between align-items-center"
+          >
+            <h5>Available Seats</h5>
+            <p>30</p>
+          </div>
+
+          <div
+            class="course-info d-flex justify-content-between align-items-center"
+          >
+            <h5>Schedule</h5>
+            <p>5.00 pm - 7.00 pm</p>
+          </div>
+
+          <div class="w-full my-5">
+            <a
+              class="btn !w-full !bg-accent hover:bg-accent-dark text-white mb-4"
+              routerLink="/course/{{ course.id }}/files"
+              >Continue Learning</a
+            >
+            @if(IsCourseLoading$ | async){
+            <button class="!w-full btn btn-danger">
+              <span class="spinner-border spinner-border-sm"></span>
+              Loading...
+            </button>
+            }@else{
+            <learnal-delete-confirmation
+              buttonText="Delete Course"
+              className="w-full h-auto"
+              (deleteFunc)="deleteCourse(course.id)"
+              message="Are you sure you want to delete this product?"
+            />
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Cource Details Section -->
+
+  }@else{
+  <learnal-empty [isNotEnrolled]="false" />
+  }
+</div>
+
+<!-- End Cource Details Tabs Section -->

@@ -1,0 +1,63 @@
+<div
+  class="container height-100 d-flex justify-content-center align-items-center"
+>
+  <div class="position-relative">
+    <div class="card p-2 text-center">
+      <h6>
+        Please enter the one time password <br />
+        we sent to <b>{{ userEmail }}</b> <br />
+        to verify your account
+      </h6>
+      <div>
+        <form
+          (ngSubmit)="onSubmit()"
+          id="otp"
+          class="inputs d-flex flex-col justify-content-center mt-2"
+        >
+          <input
+            class="m-2 text-center form-control rounded"
+            type="number"
+            name="otp"
+            [(ngModel)]="otp"
+            required
+            min="6"
+            max="6"
+          />
+          <h5 *ngIf="errorMessage$ | async as message" class="badge bg-danger">
+            {{ message }}
+          </h5>
+          <h5
+            *ngIf="successMessage$ | async as message"
+            class="p-1 bg-green-700 text-white text-center rounded-md"
+          >
+            {{ message }}
+          </h5>
+          <div class="mt-4">
+            @if(isLoading$ | async){
+            <button class="btn btn-success validating">
+              <span class="spinner-border spinner-border-sm"></span>
+              Verifying...
+            </button>
+            }@else{
+            <button type="submit" class="btn btn-success px-4 validate">
+              Verify
+            </button>
+            }
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="card-2">
+      <div class="content d-flex justify-content-center align-items-center">
+        <span>Didn't get the code</span>
+        <button
+          type="button"
+          (click)="resendOtp()"
+          class="text-decoration-none ms-3"
+        >
+          Resend({{ resendOtpTimes() }}/3)
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
